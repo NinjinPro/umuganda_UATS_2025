@@ -1,0 +1,105 @@
+.signup-slider {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.slide {
+    display: none;
+    animation: fadeSlide 0.4s ease;
+}
+
+.slide.active {
+    display: block;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    justify-items: flex-start;
+    margin-bottom: 5px;
+  }
+
+
+
+/* .slide span > p { */
+    /* padding: 0; */
+    /* margin: 0; */
+    /* display: grid; */
+    /* flex-direction: row; */
+/* } */
+
+.required_field {
+    color: red;
+    font-weight: 800;
+    font-size: 18px;
+    margin: -8px 0 0 8px;
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.role-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.role-card {
+    padding: 1rem 2rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-card:hover {
+    border-color: var(--accent);
+    background: var(--light-blue);
+}
+
+.slide-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #005fa3 ;
+}
+
+#submitBtn {
+    margin-left: 8px ;
+}
+
+.hidden {
+    display: none;
+}
+
+.country-input {
+    margin-top: 1rem;
+}
+
+.blue {
+    background-color: var(--light-blue);
+}

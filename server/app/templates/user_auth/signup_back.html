@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ super() }} | Signup
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+{% endblock %}
+
+{% block content %}
+  <form method="POST" action=" {{ url_for('users.signup') }} ">
+    {{ form.hidden_tag() }}
+
+    <p>{{ form.first_name.label }} {{ form.first_name(size=32) }}</p>
+    <p>{{ form.middle_name.label }} {{ form.middle_name(size=32) }}</p>
+    <p>{{ form.last_name.label }} {{ form.last_name(size=32) }}</p>
+
+    <p>{{ form.gender.label }} {{ form.gender() }}</p>
+    <p>{{ form.email.label }} {{ form.email(size=32) }}</p>
+    <p>{{ form.phone.label }} {{ form.phone(size=32) }}</p>
+
+    <h3>Address:</h3>
+    <p>{{ form.province.label }} {{ form.province(size=32) }}</p>
+    <p>{{ form.district.label }} {{ form.district(size=32) }}</p>
+    <p>{{ form.sector.label }} {{ form.sector(size=32) }}</p>
+    <p>{{ form.cell.label }} {{ form.cell(size=32) }}</p>
+    <p>{{ form.village.label }} {{ form.village(size=32) }}</p>
+    <p>{{ form.isibo.label }} {{ form.isibo(size=32) }}</p>
+
+    <p>{{ form.is_local.label }} {{ form.is_local() }}</p>
+    <p>{{ form.is_not_local.label }} {{ form.is_not_local(size=32) }}</p>
+
+    <div class="password-toggle">
+      <p>{{ form.password.label }}</p>
+      <p>{{ form.password(size=32, id='password') }}</p>
+    </div>
+
+    <div class="password-toggle">
+      <p>{{ form.confirm.label }}</p>
+      <p>{{ form.confirm(size=32, id='confirm') }}</p>
+    </div>
+
+    <div class="toggle-wrapper">
+      <input type="checkbox" id="togglePassword">
+      <label for="togglePassword">Show password</label>
+    </div>
+
+    <p>{{ form.submit() }}</p>
+
+  <div class="text-center">
+    <small>Already have an account ? <a href="{{ url_for('users.login') }}">Login</a></small>
+  </div>
+  
+  </form>
+{% endblock %}
+
+{% block sidebar %} {% endblock %}
+
+{% block scripts %}
+  <script>
+    const toggler = document.getElementById("togglePassword");
+    const passwordField = document.getElementById('password');
+    const confirmField = document.getElementById('confirm');
+
+    toggler.addEventListener('change', function () {
+      [confirmField, passwordField].forEach(field => {
+        field.type = this.checked ? 'text' : 'password';
+      })
+    });
+
+  </script>
+{% endblock %}

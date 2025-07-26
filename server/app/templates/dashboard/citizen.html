@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ super() }} | Citizen Dashboard
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="dashboard-container">
+    <h2>Welcome, {{ current_user.first_name or "User" }}</h2>
+
+    <div class="dashboard-grid">
+
+      <!-- Upcoming Umuganda -->
+
+      <div class="dashboard-card">
+        <h3>Upcoming Umuganda</h3>
+        <p>Next umuganda: <strong>{{ next_umuganda.date if next_umuganda else 'None scheduled' }}</strong></p>
+        {% if next_umuganda %}
+        <p>Location: {{ next_umuganda.location }}</p>
+        {% endif %}
+        <a href="#" class="btn">View All</a>
+      </div>
+
+      <!-- Attendance Record -->
+
+      <div class="dashboard-card">
+        <h3>My Attendance</h3>
+        <p>Total attended: {{ attendance_count }}</p>
+        <p>Missed: {{ missed_count }}</p>
+        <a href="#" class="btn">View History</a>
+      </div>
+
+      <!-- Fines you have got -->
+
+      <div class="dashboard-card">
+        <h3>My Fines</h3>
+        <p>Total fines: {{ total_fines or 0 }} RWF</p>
+        <a href="#" class="btn">Pay or View</a>
+      </div>
+
+      <!-- Notifications -->
+
+      <div class="dashboard-card">
+        <h3>Notifications</h3>
+        {% if notifications %}
+          <ul>
+            {% for note in notifications %}
+              <li>{{ note.message or "" }} <small>({{ note.date or "" }})</small></li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No new notifications.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="dashboard-footer">
+      <a href="{{ url_for('users.logout') }}" class="btn logout">Logout</a>
+    </div>
+  </div>
+{% endblock %}

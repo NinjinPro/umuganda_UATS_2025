@@ -1,0 +1,201 @@
+/*body {
+    background-color: #f1f4f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}*/
+
+/* .container { */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* height: 100vh; */
+    /* flex-direction: column; */
+    /* padding: 1rem; */
+    /* width: 500px; */
+    /* margin: 0 auto; */
+    
+/*
+}
+
+.container .login-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.container .login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #005f9e;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container label {
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.container input[type="text"],
+.container input[type="password"] {
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+}
+
+.container input[type="text"]:focus,
+.container input[type="password"]:focus {
+    border-color: #0077cc;
+    outline: none;
+}
+
+.container .toggle-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.container .toggle-wrapper input {
+    margin-right: 8px;
+}
+
+.container .btn {
+    padding: 10px;
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.container .btn:hover {
+    background-color: #005fa3;
+}
+
+.container .error-text {
+    color: red;
+    font-size: 13px;
+    margin-top: -12px;
+    margin-bottom: 12px;
+}
+
+.container .text-center {
+    text-align: center;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+small {
+    display: block;
+    margin-top: 10px;
+}*/
+
+
+
+
+
+
+
+
+
+
+/* =========== refined login.css ============ */
+
+.login-box {
+    max-width: 420px;
+    margin: auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+.toggle-wrapper {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.btn {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #005fa3;
+}
+
+.error-text {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

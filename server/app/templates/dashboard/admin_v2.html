@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ super() }} Admin Dashboard
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_v2.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="admin-dashboard">
+        <aside class="sidebar" id="admin-sidebar">
+            <nav>
+                <ul>
+                    <li class="active"><a href="#" data-section="overview">Overview</a></li>
+                    <li><a href="#" data-section="create-umuganda">Create Umuganda</a></li>
+                    <li><a href="#" data-section="view-imiganda">View Imiganda</a></li>
+                    <li><a href="#" data-section="attendance">Mark Attendance</a></li>
+                    <li><a href="#" data-section="notifications">Send Notifications</a></li>
+                    <!-- <li><a href="#" data-section="chat">Chat with Citizens</a></li> --> <!-- lack of enough time continue next week -->
+                    <li><a href="#" data-section="fines">Track Fine Payments</a></li>
+                    <li><a href="#" data-section="profile">My Profile</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <section id="overview" class="section active">
+                <h1>Welcome, {{user.first_name}} (Admin)</h1>
+                <p>Here you can manage umuganda local community in your sector, 
+                    mark attendance, view fines, and chat with the citizens in your 
+                    sector sector.
+                </p>
+            </section>
+
+            <section id="create-umuganda" class="section">
+                <h2>Create New Umuganda Community Event</h2>
+                <form id="umugandaForm">
+                    <label>Title</label>
+                    <input type="text" name="title" required>
+
+                    <label>Location</label>
+                    <input type="text" name="location" required>
+                    
+                    <label>Date</label>
+                    <input type="date" name="umuganda_date" required>
+                    
+                    <label>Starting At</label>
+                    <input type="datetime-local" name="start_time" required>
+
+                    <label>Ending At</label>
+                    <input type="datetime-local" name="end_time" required>
+
+                    <label>Description</label>
+                    <textarea name="description" rows="4"></textarea>
+
+                    <button type="submit">Create</button>
+                </form>
+            </section>
+            
+            <section id="view-imiganda" class="section">
+                <table style="width: inherit;overflow-x: scroll;">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Desc.</th>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Duration</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for umu in imiganda %}
+                            <tr>
+                                <td>{{ umu.title }}</td>
+                                <td>{{ umu.description }}</td>
+                                <td>{{ umu.umuganda_date }}</td>
+                                <td>{{ umu.location }}</td>
+                                <td>{{ umu.duration }}</td>
+                                <td>{{ umu.created_at }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="attendance" class="section">
+                {% if citizens %}
+                    <h2>Mark Attendance</h2>
+                    <p>Select citizens from your sector:</p>
+                    <div class="attendance-list">
+                        {% for citizen in citizens %}
+                            <div class="citizen">
+                                <span>{{ citizen.name }}</span>
+                                <label><input type="checkbox" name="attendance"> Present</label>
+                            </div>
+                        {% endfor %}
+                        <button>Save Attendance</button>
+                    </div>
+                {% else %}
+                    <h2>There are no current citizens in your sector</h2>
+                {% endif %}
+            </section>
+
+            <section id="notifications" class="section">
+                <h2>Send Notifications</h2>
+                <form>
+                    <textarea placeholder="Type your message..." rows="4"></textarea>
+                    <button>Send to All Citizens</button>
+                </form>
+            </section>
+
+            <section id="chat" class="section">
+                <h2>Chat with Citizen</h2>
+                <select>
+                    <option>Select Citizen</option>
+                    <option>John Doe</option>
+                    <option>Jane Smith</option>
+                </select>
+                <div class="chat-box">
+                    <div class="messages">
+                    <p><strong>John:</strong> Hello!</p>
+                    <p><strong>You:</strong> Hi there!</p>
+                    </div>
+                    <input type="text" placeholder="Type message...">
+                    <button>Send</button>
+                </div>
+            </section>
+
+            <section id="fines" class="section">
+                <h2>Fine Payments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Citizen</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>John Doe</td>
+                            <td>500 RWF</td>
+                            <td>Paid</td>
+                        </tr>
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>500 RWF</td>
+                            <td>Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="profile" class="section">
+                <h2>My Profile</h2>
+                <p>Name: {{ user.first_name }} {{ user.middle_name or "" }} {{ user.last_name or "" }}</p>
+                <p>Email: {{ user.email }}</p>
+                <p>Phone: {{ user.phone }}</p>
+                <div>
+                    <p>Address:</p> 
+                    {% for add in address %}
+                        <li>{{ add[0] }} : {{ add[1] }}</li>
+                    {% endfor%}
+                </div>
+                <p>Sector: {{ sectorName }}</p>
+            </section>
+        </main>
+    </div>
+    
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/admin_v2.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/admin_create_umuganda.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/mark_attendance.js') }}" ></script>
+{% endblock %}

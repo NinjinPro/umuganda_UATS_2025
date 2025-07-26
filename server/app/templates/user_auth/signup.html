@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ super() }} | Signup
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup_sliding_effects.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="signup-slider">
+  <p><span class="required_field">*</span> <span style="text-decoration: underline; font-size: 18px;">Means the field is required!</span> </p>
+  <form method="POST" action="{{ url_for('users.signup') }}" id="signupForm">
+    {{ form.hidden_tag() }}
+
+    <!-- ===================== slide 1 ===================== -->
+    <div class="slide active">
+      <h2>Select Your Position <span class="required_field">*</span></h2>
+      <div class="role-options">
+        <label class="role-card">
+          <input type="radio" name="role" value="citizen" required hidden>
+          <span>Citizen</span>
+        </label>
+
+        <label class="role-card">
+          <input type="radio" name="role" value="admin" hidden>
+          <span>Admin</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ===================== slide 2 ===================== -->
+    <div class="slide">
+      <h2>Are you Rwandan? <span class="required_field">*</span></h2>
+      
+      <div class="role-options">
+        <label class="role-card">
+          <input type="radio" name="is_local" value="yes" required hidden>
+          <label>Yes</label>
+        </label>
+
+        <label class="role-card"  style="margin-left: 20px;">
+          <input type="radio" name="is_local" value="no" hidden>
+          <label>No</label>
+        </label>
+      </div>
+      
+      <div class="country-input hidden">
+        <label for="native_country">Your Country: <span class="required_field">*</span></label>
+        <input type="text" name="native_country" id="native_country">
+      </div>
+    </div>
+
+    <!-- ===================== slide 3 ===================== -->
+    <div class="slide">
+      <h2>Give your personal information :</h2>
+      <p>{{ form.first_name.label }}  <span class="required_field">*</span> {{ form.first_name(size=32) }}</p>
+      <p>{{ form.middle_name.label }} {{ form.middle_name(size=32) }}</p>
+      <p>{{ form.last_name.label }}  <span class="required_field">*</span> {{ form.last_name(size=32) }}</p>
+      <p>{{ form.gender.label }}  <span class="required_field">*</span> {{ form.gender() }}</p>
+    </div>
+
+    <!-- ===================== slide 4 ===================== -->
+    <div class="slide">
+      <h2>Give your address details :</h2>
+      <p>{{ form.province.label }}  <span class="required_field">*</span> {{ form.province(size=32) }}</p>
+      <p>{{ form.district.label }}  <span class="required_field">*</span> {{ form.district(size=32) }}</p>
+      <p>{{ form.sector.label }}  <span class="required_field">*</span> {{ form.sector(size=32) }}</p>
+      <p>{{ form.cell.label }}  <span class="required_field">*</span> {{ form.cell(size=32) }}</p>
+      <p>{{ form.village.label }}  <span class="required_field">*</span> {{ form.village(size=32) }}</p>
+      <p>{{ form.isibo.label }} {{ form.isibo(size=32) }}</p>
+    </div>
+
+    <!-- ===================== slide 5 ===================== -->
+    <div class="slide">
+      <h2>Give as your creditials :</h2>
+      <p>{{ form.email.label }}  <span class="required_field">*</span> {{ form.email(size=32) }}</p>
+      <p>{{ form.phone.label }}  <span class="required_field">*</span> {{ form.phone(size=32) }}</p>
+      <div class="password-toggle">
+        <p>{{ form.password.label }} <span class="required_field">*</span></p>
+        <p>{{ form.password(size=32, id='password') }} </p>
+      </div>
+      <div class="password-toggle">
+        <p>{{ form.confirm.label }} <small style="color: var(--accent); margin-left: 8px;">( Password must be a match )</small>   </p>
+        <p>{{ form.confirm(size=32, id='confirm') }}</p>
+      </div>
+      <div class="toggle-wrapper" style="position: relative; display: block; margin-left: 0;" >
+        <span   >
+          <label for="togglePassword"><input type="checkbox" id="togglePassword"> Show password</label>
+        </span>
+      </div>
+    </div>
+
+    
+
+    <!-- ===================== nav btns ===================== -->
+    <div class="slide-nav">
+      <button type="button" id="prevBtn" class="nav-btn" disabled>Previous</button>
+      <button type="button" id="nextBtn" class="nav-btn">Next</button>
+      <input type="submit" id="submitBtn" class="nav-btn hidden" value="Sign Up">
+    </div>
+
+    <div class="text-center">
+      <small>Already have an account? <a href="{{ url_for('users.login') }}">Login</a></small>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+{% block home_sidebar %}
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    const role_cards = document.querySelectorAll(".role-card");
+    role_cards[0].addEventListener("click", function() {
+      this.classList.add("blue");
+      role_cards[1].classList.remove("blue");
+    });
+
+    role_cards[1].addEventListener("click", function() {
+      this.classList.add("blue");
+      role_cards[0].classList.remove("blue");
+    });
+    
+    role_cards[2].addEventListener("click", function() {
+      this.classList.add("blue");
+      role_cards[3].classList.remove("blue");
+    });
+    
+    role_cards[3].addEventListener("click", function() {
+      this.classList.add("blue");
+      role_cards[2].classList.remove("blue");
+    });
+
+  </script>
+  <script src="{{ url_for('static', filename='js/signup_sliding.js') }}"></script>
+{% endblock %}

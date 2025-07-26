@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ super() }} | Login
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="login-box">
+      <h2>Login to UATS</h2>
+      <form method="POST" action="{{ url_for('users.login') }}" autocorrect="off" autocomplete="off">
+        {{ form.hidden_tag() }}
+
+        <label for="identifier">{{ form.identifier.label.text }}</label>
+        {{ form.identifier(id="identifier", class="form-control", placeholder="Email or Phone") }}
+        {% for error in form.identifier.errors %}
+        <div class="error-text">{{ error }}</div>
+        {% endfor %}
+
+        <label for="password">{{ form.password.label.text }}</label>
+        {{ form.password(id="password", class="form-control", placeholder="Password") }}
+        {% for error in form.password.errors %}
+        <div class="error-text">{{ error }}</div>
+        {% endfor %}
+
+        <div class="toggle-wrapper">
+          <input type="checkbox" id="togglePassword">
+          <label for="togglePassword">Show password</label>
+        </div>
+
+        {{ form.submit(class="btn") }}
+
+        <div class="text-center">
+          <small>Don't have an account? <a href="{{ url_for('users.signup') }}">Sign up</a></small>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block sidebar %} {% endblock %}
+
+{% block scripts %}
+  <script>
+    const toggle = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    toggle.addEventListener('change', function () {
+      passwordField.type = this.checked ? 'text' : 'password';
+    });
+  </script>
+{% endblock %}

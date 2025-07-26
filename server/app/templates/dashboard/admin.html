@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+  {{ super() }} | Admin Dashboard
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+
+{% block title %}
+{{ super() }}
+Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+<div class="admin-dashboard" style="display: flex; min-height: 100vh;">
+
+  <!-- admin dashboard -->
+  <aside style="width: 250px; background-color: #f8f9fa; padding: 20px;">
+    <h3>Admin Panel</h3>
+    <nav>
+      <ul style="list-style: none; padding-left: 0;">
+        <li><a href="#umuganda" style="text-decoration: none;">Manage Umuganda</a></li>
+        <li><a href="#fines" style="text-decoration: none;">Manage Fines</a></li>
+        <li><a href="#attendance" style="text-decoration: none;">Attendance Records</a></li>
+        <li><a href="#notifications" style="text-decoration: none;">Notifications</a></li>
+        <li><a href="#payments" style="text-decoration: none;">Payment Reviews</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main style="flex-grow: 1; padding: 30px;">
+    <h1>Welcome, Admin {{ current_user.name or 'User' }}</h1>
+
+    <!-- umuganda -->
+    <section id="umuganda" style="margin-top: 40px;">
+      <h2>Manage Umuganda</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in umuganda_list %}
+          <tr>
+            <td>{{ u.date }}</td>
+            <td>{{ u.location }}</td>
+            <td>{{ u.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- fines -->
+    <section id="fines" style="margin-top: 40px;">
+      <h2>Manage Fines</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Citizen</th>
+            <th>Reason</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fine in fines_summary %}
+          <tr>
+            <td>{{ fine.citizen }}</td>
+            <td>{{ fine.reason }}</td>
+            <td>{{ fine.amount }} RWF</td>
+            <td>{{ fine.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- attendance -->
+    <section id="attendance" style="margin-top: 40px;">
+      <h2>Attendance Records</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Citizen</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for att in attendance_records %}
+          <tr>
+            <td>{{ att.citizen }}</td>
+            <td>{{ att.umuganda_date }}</td>
+            <td>{{ att.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- notifications -->
+    <section id="notifications" style="margin-top: 40px;">
+      <h2>Notifications Sent</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Sent On</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for n in notifications_sent %}
+          <tr>
+            <td>{{ n.title }}</td>
+            <td>{{ n.content }}</td>
+            <td>{{ n.sent_on }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- payment -->
+    <section id="payments" style="margin-top: 40px;">
+      <h2>Payment Reviews</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Citizen</th>
+            <th>Fine</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in payment_reviews %}
+          <tr>
+            <td>{{ p.citizen }}</td>
+            <td>{{ p.fine }}</td>
+            <td>{{ p.status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // window.addEventListener("DOMContentLoaded", () => {
+  //   const logout_anchor = document.getElementById("logout_anchor");
+  //   const logout_form = document.getElementById("logout_form");
+
+  //   logout_anchor.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     logout_form.submit();
+  //   })
+  // })
+</script>
+{% endblock %}

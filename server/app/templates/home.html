@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ super() }} | Home
+{% endblock %}
+
+{% block content %}
+ {{ super() }}
+  
+  <img src="{{ url_for('static', filename='img/uats-preview-1.jpg') }}" alt="Umuganda Image" style="width:100%; height:auto;" /> <br>
+  <small>source : <a href="https://www.facebook.com/photo.php?fbid=960455699599026&id=100069038137416&set=a.248899487421321">Umuganda</a></small>
+  <h1>Welcome to UATS - Your Digital Umuganda Assistant</h1>
+  <p>
+    UATS (Umuganda Attendance & Fines Tracking System) is a smart and simple platform built 
+    to digitalize how communities organize and manage their monthly Umuganda community programs.
+    From real-time attendance to automated fine management, we make community service more effective, 
+    accountable, and transparent.
+  </p>
+
+  <section style="margin-top: 2rem;">
+    <h2>Why we created UATS ?</h2>
+    <ul>
+      <li>Easily schedule and manage monthly Umuganda events</li>
+      <li>Track attendance with a few clicks — even from your phone</li>
+      <li>Send automated mobile money fines for non-participation</li>
+      <li>Notify citizens with SMS reminders and event details</li>
+      <li>Get accurate community participation reports</li>
+    </ul>
+  </section>
+
+  <section style="margin-top: 2rem;">
+    <h2>How the system Works</h2>
+    <ol>
+      <li>Admin or leader logs in and creates an Umuganda Community Session</li>
+      <li>Citizens receive SMS reminders before the event</li>
+      <li>On event day, attendance is recorded live or after</li>
+      <li>The system calculates and notifies those with fines</li>
+      <li>Reports are generated automatically</li>
+    </ol>
+  </section>
+
+  {% if not current_user.is_authenticated %} 
+    <section style="margin-top: 2rem;">
+      <h2>Start Today!</h2>
+      <p>
+        Ready to take your Umuganda community management to the next level? 
+        <a href="{{ url_for('users.signup') }}" style="color: var(--accent); font-weight: bold;">Sign up now</a> and join the movement 
+        or <a href="{{ url_for('users.login') }}" style="color: var(--accent); font-weight: bold;">Login here</a>
+      </p>
+    </section>
+  {% endif %}
+{% endblock %}

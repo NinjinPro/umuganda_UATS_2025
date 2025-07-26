@@ -1,0 +1,137 @@
+.admin-dashboard {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+}
+
+.sidebar{
+    /* width: 250px; */
+    width: 200px;
+    background: var(--primary-blue);
+    color: white;
+    padding: 1rem;
+    padding-left: 0.3rem;
+    margin-left: -5px;
+    border-radius: 10px;
+}
+
+.sidebar h2 {
+    margin-bottom: 1rem;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav li {
+    margin: 0.8rem 0;
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.sidebar nav li.active a,
+.sidebar nav a:hover {
+    background: var(--accent);
+}
+
+.main-content {
+    flex: 1;
+    background: #f9f9f9;
+    padding: 2rem;
+}
+
+.section {
+    display: none;
+    width: 100%;
+    position: relative;
+}
+
+.section.active {
+    display: block;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.section.active button {
+    position: absolute;
+    right: -8px;
+    margin-right: 0;
+    margin-top: 8px;
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+#attendance {
+    margin-left: 20px;
+}
+
+.attendance-list .citizen {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chat-box .messages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 0.5rem;
+    background: #f1f1f1;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    overflow-x: scroll;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+}
+
+table th {
+    background: var(--light-blue);
+}
