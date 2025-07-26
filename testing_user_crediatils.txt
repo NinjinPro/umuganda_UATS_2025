@@ -1,0 +1,6 @@
+No.     phone           Email                       role        Passowrd
+--------------------------------------------------------------------------------
+1       1111111111      Kamanzi@uats.bibare.com     citizen     citizen1
+2       2222222222      bob12e34@gmail.com          citizen     citizen2
+3       3333333333      charlie43rf32s@gmail.com    citizen     citizen3
+4       4444444444      alice1@uats.bibare.com      admin       admin-kimironko
